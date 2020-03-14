@@ -1,18 +1,16 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
-class Gcd < Formula
-  desc "gcd - The git change directory tool"
+class Menv < Formula
+  desc "menv - The environment changer for maven"
   homepage "https://www.ivonet.nl"
-  url "https://github.com/IvoNet/git-cd/archive/0.1.tar.gz"
+  url "https://github.com/IvoNet/menv/archive/v0.1.tar.gz"
   version "0.1"
-  sha256 "142a2b678a9033932dae69c7604286a933263d6edb069d27243ab53c303c3459"
-  head "https://github.com/IvoNet/git-cd.git"
+  sha256 "7c1439c227c0c2e808ff85bfca29f6e8ecd35641ed2b7ea21892883b95dab94f"
 
-  depends_on "python@3"
+  depends_on "maven"
 
   def install
-    bin.install "bin/gcd"
-
+    bin.install "bin/menv"
   end
 
   test do
@@ -25,6 +23,6 @@ class Gcd < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "true"
+    system "menv", "-h"
   end
 end
