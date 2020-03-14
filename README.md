@@ -28,3 +28,23 @@ e.g. `brew install menv`
 | menv | Maven Environment setter - developer tool |
 | drawio | DrawIO docker script |
 
+## ivonet-docker
+
+| commands  | description                     |
+|:----------|:--------------------------------|
+| dig | Docker images grep    |
+| docker-make | Creates a Makefile in the current folder |
+| docker-project | Generates a standard ivonet docker project |
+| docker-ui-project | Generates a standard ivonet docker ui project |
+
+## ivonet-media
+
+| commands  | description                     |
+|:----------|:--------------------------------|
+| m4b | Create Audiobook from mp3 |
+| m4v | Convert movies to m4v format |
+| mkvmerge | Merge mkv files |
+| mkvinfo | Get Metadata information on a mkv file |
+| mkv2x264 | Convert x265 to x264 for older devices |
+| mkv-rm-tracks | remove unwanted tracks from an mkv envelope |
+
