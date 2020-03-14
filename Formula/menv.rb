@@ -11,7 +11,8 @@ class Menv < Formula
 
   def install
     bin.install "bin/menv"
-    bin.install "bin/mvn"
+    libexec.install Dir["*"]
+    bin.write_exec_script libexec/"bin/mvn"
   end
 
   test do
