@@ -10,10 +10,10 @@ class Gcd < Formula
 
   # depends_on "cmake" => :build
 
-  def install
+  # def install
     # ENV.deparallelize  # if your formula fails when building in parallel
-    system "git", "clone", head
-  end
+    # system "git", "clone", head
+  # end
 
   test do
     # `test do` will create, run in and delete a temporary directory.
