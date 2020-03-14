@@ -41,11 +41,11 @@ e.g. `brew install menv`
 
 | commands  | description                     |
 |:----------|:--------------------------------|
-| m4b | Create Audiobook from mp3 |
-| m4v | Convert movies to m4v format |
-| mkvmerge | Merge mkv files |
-| mkvinfo | Get Metadata information on a mkv file |
-| mkv2x264 | Convert x265 to x264 for older devices |
+| m4b       | Create Audiobook from mp3 |
+| m4v       | Convert movies to m4v format |
+| mkvmerge  | Merge mkv files |
+| mkvinfo   | Get Metadata information on a mkv file |
+| mkv2x264  | Convert x265 to x264 for older devices |
 | mkv-rm-tracks | remove unwanted tracks from an mkv envelope |
 
 
