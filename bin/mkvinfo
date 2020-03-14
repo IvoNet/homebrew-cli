@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+ if [ -z "$1" ]; then
+    echo "Please provide an mkv file as parameter"
+    echo "Syntax: $0 <mkv> [other options]"
+    mkvinfo-help
+    exit $?
+fi
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+mkv="$(basename $1)"
+map="$(dirname $1)"
+runit \
+   -v "$(pwd)/$map:/input:ro" \
+   --entrypoint "mkvinfo" \
+   ivonet/mediatools:latest \
+   "/input/$mkv" \
+   "$@"
+IFS=$SAVEIFS

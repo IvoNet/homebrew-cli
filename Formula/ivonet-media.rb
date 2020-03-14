@@ -11,6 +11,10 @@ class IvonetMedia < Formula
     bin.install "bin/m4b"
     bin.install "bin/m4v"
     bin.install "bin/mkvmerge"
+    bin.install "bin/mkvinfo"
+    bin.install "bin/mkvinfo-help"
+    bin.install "bin/mkv2x264"
+    bin.install "bin/mkv-rm-tracks"
   end
   
   def caveats; <<~EOS
