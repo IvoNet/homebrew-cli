@@ -3,16 +3,17 @@
 class Menv < Formula
   desc "menv - The environment changer for maven"
   homepage "https://www.ivonet.nl"
-  url "https://github.com/IvoNet/menv/archive/v0.4.tar.gz"
+  url "https://github.com/IvoNet/menv/archive/v0.5.tar.gz"
   version "0.4"
-  sha256 "e6f64f11e5d396d2a3e0f645ec139d85dae897fb013938cf6465a5ee55c96cda"
+  sha256 "2efe5dcbe2fb89552ddf590393d37078448e83e46ab06f90f98b4bc4b9383903"
 
   depends_on "maven"
 
   def install
     bin.install "bin/menv"
     libexec.install Dir["*"]
-    bin.write_exec_script libexec/"bin/mvn"
+    # bin.write_exec_script libexec/"bin/mvn"
+    system "menv", "-i"
   end
 
   test do
