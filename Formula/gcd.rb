@@ -9,7 +9,7 @@ class Gcd < Formula
   head "https://github.com/IvoNet/git-cd.git"
 
   def install
-    bin.install "gcd"
+    bin.install "bin/gcd"
   end
 
   test do
