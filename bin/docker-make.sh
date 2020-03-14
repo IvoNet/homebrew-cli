@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+## initialises the current folder with docker make stuff.
+echo "Retrieving: Makefile"
+rm -f Makefile 2>/dev/null
+curl -s https://raw.githubusercontent.com/IvoNet/docker-make/master/Makefile -o Makefile
+echo "Retrieving: makefile.env"
+if [ ! -e makefile.env ]; then
+    curl -s https://raw.githubusercontent.com/IvoNet/docker-make/master/makefile.env -o makefile.env
+    echo "Make sure to update makefile.env to your liking.."
+fi
+cat makefile.env

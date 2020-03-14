@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+ if [ -x $1 ]; then
+     docker images
+ else
+     docker images|grep "$1"
+ fi
