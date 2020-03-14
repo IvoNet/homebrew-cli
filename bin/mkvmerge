@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+if [ -z "$1" ]; then
+    echo "Usage example:"
+    echo "mkvmerge -o /output/output.mkv --audio-tracks 2 /input/The.BFG.2016.mkv"
+    echo "Note: the current local folder is mounted to container /input and /output!"
+    echo
+    mkvmerge --help
+fi
+runit \
+   -v "$(pwd):/input:ro" \
+   -v "$(pwd):/output:rw" \
+   --entrypoint "mkvmerge" \
+   ivonet/mediatools:latest \
+   "$@"
