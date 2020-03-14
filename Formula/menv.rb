@@ -10,8 +10,8 @@ class Menv < Formula
   depends_on "maven"
 
   def install
+    rm_f "/usr/local/bin/mvn"
     bin.install "bin/menv"
-    system "brew", "unlink", "maven"
     bin.install "bin/mvn"
   end
 
