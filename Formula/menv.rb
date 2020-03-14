@@ -10,7 +10,6 @@ class Menv < Formula
   depends_on "maven"
 
   def install
-    system "brew", "unlink", "maven"
     bin.install "bin/menv"
     bin.install "bin/mvn"
   end
