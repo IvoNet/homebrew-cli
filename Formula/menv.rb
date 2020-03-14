@@ -3,14 +3,15 @@
 class Menv < Formula
   desc "menv - The environment changer for maven"
   homepage "https://www.ivonet.nl"
-  url "https://github.com/IvoNet/menv/archive/v0.1.tar.gz"
-  version "0.1"
-  sha256 "7c1439c227c0c2e808ff85bfca29f6e8ecd35641ed2b7ea21892883b95dab94f"
+  url "https://github.com/IvoNet/menv/archive/v0.4.tar.gz"
+  version "0.4"
+  sha256 "e6f64f11e5d396d2a3e0f645ec139d85dae897fb013938cf6465a5ee55c96cda"
 
   depends_on "maven"
 
   def install
     bin.install "bin/menv"
+    system "brew", "unlink", "maven"
     bin.install "bin/mvn"
   end
 
