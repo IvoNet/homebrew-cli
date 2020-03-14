@@ -1,0 +1,185 @@
+#!/usr/bin/env bash
+
+if [ -z $1 ]; then
+    echo "Please provide a project name..."
+    exit 1
+fi
+PROJECT="$1"
+PROJECT_NAME="$PROJECT"
+
+if [ -d "${PROJECT_NAME}" ]; then
+    echo "Project ${PROJECT_NAME} already exists..."
+    exit 1
+fi
+
+mkdir ${PROJECT_NAME} 2>/dev/null
+
+if [ ! -d "${PROJECT_NAME}" ]; then
+    echo "Project ${PROJECT_NAME} not created..."
+    exit 1
+fi
+
+cat <<'EOT' > ${PROJECT_NAME}/Dockerfile
+FROM ubuntu:18.04
+LABEL maintainer="Ivo Woltring - @ivonet"
+
+RUN apt-get update \
+ && apt-get install --no-install-recommends -y  \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ENTRYPOINT [""]
+EOT
+
+cat <<'EOT' > ${PROJECT_NAME}/README.md
+# PROJECT_NAAM
+
+Docker image for: PROJECT_NAAM
+
+# Usage
+
+See `run.sh` and `PROJECT_NAAM.sh` for examples on how to run the application.
+
+# Exposed Ports
+
+| Port number| Description                                                       |
+| :----------| :-----------------------------------------------------------------|
+| `32000`    | The application runs here                                         |
+|            | |
+
+# Volumes
+
+| Volume path          | Description                                             |
+| :--------------------| :-------------------------------------------------------|
+| | |
+| | |
+
+# Environment variables
+
+| Environment | Description                                        |  Default   |
+| :-----------| :--------------------------------------------------|:-----------|
+| | | |
+| | | |
+
+# For developers
+
+## Build
+
+See `build.sh` for build instructions
+
+---
+# License
+
+    Copyright 2019 (c) Ivo Woltring
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+EOT
+
+cat <<'EOT' > ${PROJECT_NAME}/${PROJECT}.sh
+#!/usr/bin/env bash
+NAME=PROJECT_NAAM
+PORT=8080
+
+if [ ! "$(docker ps -q -f name=$NAME)" ]; then
+
+    if [ "$(docker ps -aq -f status=exited -f name=$NAME)" ]; then
+        echo "Starting existing $NAME container..."
+        docker start $NAME
+        sleep $WAIT
+        open http://localhost:$PORT
+    else
+        echo "Starting new $NAME container..."
+        docker run                                    \
+            -d                                        \
+            --name $NAME                              \
+            -p $PORT:8080                             \
+            ivonet/$NAME
+    fi
+else
+    echo "Stopping $NAME..."
+    docker stop $NAME
+fi
+
+EOT
+
+cat <<'EOT' > ${PROJECT_NAME}/VERSION
+latest
+EOT
+
+cat <<'EOT' > ${PROJECT_NAME}/run.sh
+#!/usr/bin/env bash
+NAME=PROJECT_NAAM
+PORT=8080
+if [ ! -z $1 ]; then
+   EP="--entrypoint bash"
+fi
+
+docker run          \
+    -it             \
+    --rm            \
+    --name $NAME    \
+    -p ${PORT}:8080 \
+    $EP             \
+    ivonet/$NAME
+
+EOT
+
+cat <<'EOT' > ${PROJECT_NAME}/build.sh
+#!/usr/bin/env bash
+docker_name=ivonet
+image=PROJECT_NAAM
+version=$(cat VERSION)
+
+deploy="false"
+#deploy="true"
+versioning=false
+#versioning=true
+
+#OPTIONS="$OPTIONS --no-cache"
+#OPTIONS="$OPTIONS --force-rm"
+#OPTIONS="$OPTIONS --build-arg APP=PROJECT_NAAM"
+
+docker build ${OPTIONS} -t $docker_name/${image}:latest .
+if [ "$?" -eq 0 ] && [ ${deploy} == "true" ]; then
+    docker push $docker_name/${image}:latest
+else
+    exit 1
+fi
+
+if [ "$versioning" == "true" ]; then
+    docker tag $docker_name/${image}:latest $docker_name/${image}:${version}
+    if [ "$?" -eq 0 ] && [ ${deploy} == "true" ]; then
+        docker push $docker_name/${image}:${version}
+    fi
+fi
+EOT
+
+sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/Dockerfile
+sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/README.md
+sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/build.sh
+sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/${PROJECT}.sh
+sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/run.sh
+chmod +x ${PROJECT_NAME}/build.sh
+chmod +x ${PROJECT_NAME}/${PROJECT}.sh
+chmod +x ${PROJECT_NAME}/run.sh
+
+cd ${PROJECT_NAME}
+git init
+touch README.md
+echo '.idea\n*.iml\nnode_modules\n.DS_Store\ntarget'>> .gitignore
+echo '.idea\n*.iml\nnode_modules\n.DS_Store\ntarget'>> .dockerignore
+git add .
+git commit -m 'Initialized git repo for docker project' --allow-empty
+
+ccd -set ${PROJECT}

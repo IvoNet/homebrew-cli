@@ -1,0 +1,324 @@
+#!/bin/sh
+#######################################################################
+# mp3 to m4b conversion script
+# Converts a series of mp3 files into an m4b audiobook.
+#
+# metadata available in the mp3 file(s) is mostly copied into the
+# Audiobook. These things can be overridden by commandline arguments.
+#
+# if cover art is already available in the mp3 file(s) it will be
+# extracted and added to the conver art of the audiobook.
+# else:
+# if an cover art image is available in the same folder it will be added
+# to the Audiobook.
+#
+# By IvoNet.nl
+#######################################################################
+# Configuration section
+#######################################################################
+####
+# Default transcoding bitrate
+BITRATE_DEFAULT="64"
+
+####
+# Default transcoding samplerate
+SAMPLERATE_DEFAULT="44100"
+
+####
+# Default chapter lengths in seconds
+CHAPTER_LENGTH="600"
+
+####
+# Default transcoding bitrate
+COMMENT="Converted with m4b"
+
+####
+# Default name temporary work directory
+TEMP_DIR="./tmp"
+
+####
+# Default target directory to store the end result Audiobook
+TARGET_DIR="/Users/${USER}/Music"
+
+####
+# Default wrapped mp3 file suffix
+GROUPED_MP3_NAME="temp_MP3WRAP.mp3"
+
+####
+# Year
+YEAR=""
+
+#######################################################################
+# Application section - DO NOT EDIT
+#######################################################################
+# Die function
+die () {
+    echo >&2 "[ERROR] The job ended in error."
+    echo "[ERROR] $@" 
+    exit 1
+}
+
+check1=`which ffmpeg`
+if [ "$check1" = "" ]
+then
+    die "ffmpeg is missing: sudo port install ffmeg, or: brew install ffmpeg"
+fi
+check2=`which id3info`
+if [ "$check2" = "" ]
+then
+    die "id3info is missing: sudo port install id3v2, or: brew install id3v2"
+fi
+check3=`which AtomicParsley`
+if [ "$check3" = "" ]
+then
+    die "AtomicParsley is missing: sudo port install AtomicParsley, or: brew install atomicparsley"
+fi
+check4=`which mp4chaps`
+if [ "$check4" = "" ]
+then
+    die "mp4chaps is missing: sudo port install mp4v2, or: brew install mp4v2"
+fi
+check5=`which mp4art`
+if [ "$check5" = "" ]
+then
+    die "mp4art is missing: sudo port install mp4v2"
+fi
+check6=`which eyeD3`
+if [ "$check6" = "" ]
+then
+    die "eyeD3 is missing: sudo port install py26-eyed3 (or other if other python version), or: brew install eyeD3"
+fi
+check7=`which mp3info`
+if [ "$check7" = "" ]
+then
+    die "mp3info is missing: sudo port install mp3info, or: brew install mp3info"
+fi
+
+USAGE=$(
+cat <<EOF
+m4b [OPTIONS ...]
+-h                This message
+-v                Show version        
+-o VALUE          The Audiobook name without extention (optional).
+                  if not provided it is conventionally based on 
+                  author - group - title
+-a VALUE          The Author name (mandatory).
+-t VALUE          The Title of the book (mandatory).
+-d VALUE/VALUE    Tracknum/total tracks - e.g. 1/2 - (optional).
+-g VALUE          The Grouping name (mandatory).
+-G VALUE          Genre (optional).
+-c VALUE          The length of a chapter in seconds (optional).
+                  Default value = 180
+-C VALUE          Comment (optional)
+-b VALUE          The bitrate you want to encode with (optional).
+                  Default value = 128
+-s VALUE          The samplerate you want to use (optional).
+                  Default value = 44100
+-w VALUE          The work directory to use (optional).
+                  Default value = ./tmp
+-y VALUE          Year
+                  Default value = ""
+Template:
+m4b -G "" -a "" -g "" -t ""
+m4b -w ./tmp -a "" -g "" -G "" -t ""
+m4b -G "Urban Fantasy" -a "" -g "" -t ""
+m4b -w ./tmp -G "Urban Fantasy" -a "" -g "" -t ""
+EOF
+)
+
+# Die function
+die () {
+    echo >&2 "[ERROR] The job ended in error."
+    echo "[ERROR] $@" 
+    exit 1
+}
+
+# Parse command line options.
+while getopts hvo:a:t:b:s:c:g:w:G:C:y:d: OPT; do
+    case "$OPT" in
+        h)
+            echo "$USAGE"
+            exit 0
+            ;;
+        v)
+            echo "`basename $0` version 2.1"
+            exit 0
+            ;;
+        o)
+            AUDIOBOOK=$OPTARG
+            ;;
+        a)
+            AUTHOR=$OPTARG
+            ;;
+        c)
+            CHAPTER_LENGTH=$OPTARG
+            ;;    
+        C)  
+            COMMENT=$OPTARG
+            ;;
+        g)
+            GROUPING=$OPTARG
+            ;;     
+        G)
+            GENRE=$OPTARG
+            ;;
+        t) 
+            ALBUM=$OPTARG
+            ;;
+        b)
+            BITRATE=$OPTARG
+            ;;
+        s)
+            SAMPLERATE=$OPTARG
+            ;;
+        w)
+           TEMP_DIR=$OPTARG
+           ;;
+        y)
+           YEAR=$OPTARG
+           ;;
+        d)
+           TRACK=$OPTARG
+           ;;
+        \?)
+            # getopts issues an error message
+            die "You should...\n$USAGE"
+            ;;
+    esac
+done
+
+
+# Remove the options we parsed above.
+shift `expr $OPTIND - 1`
+
+#Non optionals
+if [ "$AUTHOR" = "" ]
+then
+    die "The -a option is mandatory.\n$USAGE"
+fi
+if [ "GROUPING" = "" ]
+then
+    die "The -g option is mandatory.\n$USAGE"
+fi
+if [ "ALBUM" = "" ]
+then
+    die "The -t option is mandatory.\n$USAGE"
+fi
+
+#Convention over configuration
+if [ "$AUDIOBOOK" = "" ]
+then
+	AUDIOBOOK="$AUTHOR - $GROUPING - $ALBUM"
+	AUDIOBOOK=${AUDIOBOOK//#/}
+	TITLE=$AUDIOBOOK
+	echo "Filename based on convention:"
+	echo "$AUDIOBOOK"
+fi
+
+mp3fl="`find . -name '*.mp3' | head -n 1`"
+
+if [ "$SAMPLERATE" = "" ]
+then
+    SAMPLERATE="`mp3info -p '%Q' \"$mp3fl\"`"
+fi
+if [ "$SAMPLERATE" = "16000" ]
+then
+    # 16000 is not supported by the current ffmpeg aac codec
+    SAMPLERATE="24000" 
+fi
+if [ "$SAMPLERATE" = "" ]
+then
+    SAMPLERATE=$SAMPLERATE_DEFAULT
+fi
+echo "SAMPLERATE=$SAMPLERATE"
+
+if [ "$BITRATE" = "" ]
+then
+    BITRATE="`mp3info -r m -p '%r' \"$mp3fl\"`"
+fi
+if [ "$BITRATE" = "" ]
+then
+    BITRATE=$BITRATE_DEFAULT
+fi
+if [ "$BITRATE" = "320" ]
+then
+    BITRATE=$BITRATE_DEFAULT
+fi
+echo "BITRATE=$BITRATE"
+if [ "$TRACK" = "" ]
+then
+    TRACK="1/1"
+else
+    TRACKNAME=".Part ${TRACK//\/[0-9]/}"
+    AUDIOBOOK=$AUDIOBOOK$TRACKNAME
+fi
+echo "TRACK=$TRACK"
+
+## Make sure the folders end with a slash
+#case "$TEMP_DIR" in
+#*)
+#    TEMP_DIR="$TEMP_DIR/"
+#    ;;
+#esac
+case "$TARGET_DIR" in
+*)
+    TARGET_DIR="$TARGET_DIR/"
+    ;;
+esac
+
+# create tmp dir if not exists
+if [ ! -d "$TEMP_DIR" ] 
+then
+   mkdir "$TEMP_DIR"
+fi
+
+echo "AUTHOR=$AUTHOR"
+echo "CHAPTER_LENGTH=$CHAPTER_LENGTH"
+echo "GROUPING=$GROUPING"
+echo "ALBUM Title=$ALBUM"
+echo "WORK DIR=$TEMP_DIR"
+
+echo "Creating: $AUDIOBOOK"
+find *.mp3 -exec cat {} >>"$TEMP_DIR/$GROUPED_MP3_NAME" \;
+eyeD3 --write-images="$TEMP_DIR" "`find . -name '*.mp3' | head -n 1`"
+RETVAL=$?
+[ $RETVAL -eq 0 ] || echo "The eyeD3 command failed with exit code: $RETVAL"
+
+# TODO make this a better thing
+cp *.JPG "$TEMP_DIR/cover.jpg" &> /dev/null
+cp *.jpeg "$TEMP_DIR/cover.jpg" &> /dev/null
+cp *.jpg "$TEMP_DIR/cover.jpg" &> /dev/null
+cd "$TEMP_DIR"
+mv *.JPG cover.jpg &> /dev/null
+mv *.jpeg cover.jpg &> /dev/null
+
+# ffmpeg conversion to m4a
+#nice -10 /opt/local/bin/ffmpeg -strict experimental -i "$GROUPED_MP3_NAME" -threads 4 -vn -y -acodec aac -map_meta_data 0:0,s0 -ab "$BITRATE"k -ar "$SAMPLERATE" -ac 1 "$AUDIOBOOK.m4a" 
+#below works
+echo nice -10 ffmpeg2 -i "$GROUPED_MP3_NAME" -threads 8 -vn -y -acodec aac -map_meta_data 0:0,s0 -ab "$BITRATE"k -ar "$SAMPLERATE" -ac 1 "$AUDIOBOOK.m4a" 
+nice -10 ffmpeg2 -i "$GROUPED_MP3_NAME" -threads 8 -vn -y -acodec aac -map_meta_data 0:0,s0 -ab "$BITRATE"k -ar "$SAMPLERATE" -ac 1 "$AUDIOBOOK.m4a" 
+#nice -10 ffmpeg -bufsize 40960 -rtbufsize 40960 -i "$GROUPED_MP3_NAME" -threads 4 -vn -y -acodec aac -map_metadata 0:s:0 -ab "$BITRATE"k -ar "$SAMPLERATE" -ac 1 -strict experimental "$AUDIOBOOK.m4a" 
+RETVAL=$?
+[ $RETVAL -eq 0 ] || die "The ffmpeg command failed with exit code: $RETVAL"
+
+# AtomicParsley conversion to m4b
+echo AtomicParsley "$AUDIOBOOK.m4a" --title "$TITLE" --grouping "$GROUPING" --sortOrder album "$GROUPING" --album "$ALBUM" --artist "$AUTHOR" --genre "$GENRE" --tracknum "$TRACK" --disk "$TRACK" --comment "$COMMENT" --year "$YEAR" --stik Audiobook --overWrite
+AtomicParsley "$AUDIOBOOK.m4a" --title "$TITLE" --grouping "$GROUPING" --sortOrder album "$GROUPING" --album "$ALBUM" --artist "$AUTHOR" --genre "$GENRE" --tracknum "$TRACK" --disk "$TRACK" --comment "$COMMENT" --year "$YEAR" --stik Audiobook --overWrite
+RETVAL=$?
+[ $RETVAL -eq 0 ] || die "The AtomicParsley command failed with exit code: $RETVAL"
+
+# adding chapters to the audiobook
+mp4chaps -e "$CHAPTER_LENGTH" "$AUDIOBOOK.m4b"
+RETVAL=$?
+[ $RETVAL -eq 0 ] || die "The mp4chaps command failed with exit code: $RETVAL"
+
+# adding cover art to audiobook
+mp4art --add "`find . -name *.jpg | head -n 1`" "$AUDIOBOOK.m4b"
+RETVAL=$?
+[ $RETVAL -eq 0 ] || die "The mp4art command failed with exit code: $RETVAL"
+
+#mp4box -splits 327680 
+
+mv -v "$AUDIOBOOK.m4b" "$TARGET_DIR"
+cd ..
+rm -rf "$TEMP_DIR"

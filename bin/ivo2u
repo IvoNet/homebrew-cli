@@ -1,0 +1,2 @@
+#!/bin/sh
+curl -s -X POST -L -H "Content-Type: text/plain" --data "$*" https://ivo2u.nl/api/
