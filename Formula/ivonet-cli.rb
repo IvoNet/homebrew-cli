@@ -1,6 +1,6 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
-class IvoNetCli < Formula
+class IvonetCli < Formula
   desc "IvoNetCLI - IvoNet CLI tools."
   homepage "https://github.com/IvoNet/homebrew-ivonet/tree/master/bin"
   url "https://github.com/IvoNet/homebrew-ivonet/archive/master.zip"
