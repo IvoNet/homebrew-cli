@@ -8,12 +8,9 @@ class Gcd < Formula
   sha256 "142a2b678a9033932dae69c7604286a933263d6edb069d27243ab53c303c3459"
   head "https://github.com/IvoNet/git-cd.git"
 
-  # depends_on "cmake" => :build
-
-  # def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
-    # system "git", "clone", head
-  # end
+  def install
+    bin.install "gcd"
+  end
 
   test do
     # `test do` will create, run in and delete a temporary directory.
@@ -25,6 +22,6 @@ class Gcd < Formula
     #
     # The installed folder is not in the path, so use the entire path to any
     # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "false"
+    system "gcd"
   end
 end
