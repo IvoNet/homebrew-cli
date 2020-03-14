@@ -22,6 +22,6 @@ class IvonetMedia < Formula
       If you do not have it installed please run:
       `brew cask install docker`
     EOS
-    end
+  end
   
 end

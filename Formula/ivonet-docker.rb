@@ -14,5 +14,12 @@ class IvonetDocker < Formula
     bin.install "bin/docker-project"
     bin.install "bin/docker-ui-project"
   end
+
+  def caveats; <<~EOS
+      Most scripts in this install need docker installed.
+      If you do not have it installed please run:
+      `brew cask install docker`
+    EOS
+  end
   
 end
