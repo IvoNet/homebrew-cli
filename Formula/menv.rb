@@ -11,6 +11,7 @@ class Menv < Formula
 
   def install
     bin.install "bin/menv"
+    bin.install "bin/mvn"
   end
 
   test do
