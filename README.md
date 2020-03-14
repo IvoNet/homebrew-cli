@@ -64,3 +64,12 @@ e.g. `brew install menv`
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+# Disclaimer
+
+The scripts in this Tap room are mainly meant for myself and have been tested only on my machine.
+Some scripts might only be interesting to me but sometimes people ask me if they can have my
+scripts too. Please use what you want but do be careful and you might want to look at the scripts first.
+
+By using them you are agreeing to the License.
+I will take no responsibility for possible errors and failures of any kind.
