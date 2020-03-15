@@ -36,7 +36,7 @@ e.g. `brew install menv`
 
 | command            | description                                              |
 |:-------------------|:---------------------------------------------------------|
-| histg              | a command history grep command                           |
+| git_dump_all_versions_of_a_file | Dumps all the versions of a specific file to disk |
 
 ## ivonet-docker
 
