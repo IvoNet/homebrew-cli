@@ -1,4 +1,4 @@
-# homebrew-ivonet
+# homebrew-cli
 
 The IvoNet HomeBrew Tap room for some of my CLI tools.
 
@@ -11,7 +11,7 @@ The IvoNet HomeBrew Tap room for some of my CLI tools.
 Add the tap room to your taps
 
 ```bash
-brew tap ivonet/ivonet
+brew tap ivonet/cli
 ```
 
 After that just use the normal install commands
