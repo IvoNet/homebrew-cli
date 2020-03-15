@@ -2,6 +2,9 @@
 
 The IvoNet HomeBrew Tap room for some of my CLI tools.
 
+This taproom will probably grow over time :-)
+I will also reserve the right to remove scripts if I want to.
+
 ## Prerequisites
 
 * [Brew](https://brew.sh) needs to be installed
