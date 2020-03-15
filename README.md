@@ -32,6 +32,12 @@ e.g. `brew install menv`
 | drawio             | DrawIO docker script                                     |
 | reset-wifi         | turns the Wi-Fi off and on again                         |
 
+## ivonet-common
+
+| command            | description                                              |
+|:-------------------|:---------------------------------------------------------|
+| histg              | a command history grep command                           |
+
 ## ivonet-docker
 
 | command            | description                                              |
