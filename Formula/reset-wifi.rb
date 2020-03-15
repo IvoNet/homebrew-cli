@@ -5,7 +5,7 @@ class ResetWifi < Formula
   homepage "https://github.com/IvoNet/homebrew-ivonet/tree/master/bin"
   url "https://github.com/IvoNet/homebrew-cli/archive/v0.3.tar.gz"
   version "0.1"
-  sha256 "fe6b19cab3064d8ce89b24417a6eec0291e587fbd15fd11522ab3bf267c50a80"
+  sha256 "68d0d3a367cea7d1d44ba557335aa7597fe0bdbe0493b578a71a39a4e32bb2e0"
 
   depends_on "curl"
 
