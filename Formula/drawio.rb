@@ -5,7 +5,7 @@ class Drawio < Formula
   homepage "https://github.com/IvoNet/homebrew-ivonet/tree/master/bin"
   url "https://github.com/IvoNet/homebrew-cli/archive/v0.2.tar.gz"
   version "0.2"
-  sha256 "cf2668de6508aa87db95fa53a08eca78422c9899b719418e65e4bead55ded3fe"
+  sha256 "bc0a3836a9fb1d5422f51245a12d0c5d19b8294bc9d0dc34d606ada630d9e35e"
 
   def install
     bin.install "bin/drawio"
