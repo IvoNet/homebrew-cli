@@ -1,10 +1,20 @@
 #!/bin/sh
+if [[ -z "$1" ]]; then
+    echo "How it works:"
+    echo "* Go into a git repo"
+    echo "* git_dump_all_versions_of_a_file <relative_path_to_file_to_dump>"
+    echo "* and it will be done ..."
+    exit 1
+fi
 ROOT_FOLDER=$(\git rev-parse --show-toplevel)
+if [[ -z "${ROOT_FOLDER}" ]]; then
+    echo "Are you sure this is a git project?"
+fi
 CURR_DIR=$(pwd)
-if [ "$ROOT_FOLDER" != "$CURR_DIR" ]
+if [[ "$ROOT_FOLDER" != "$CURR_DIR" ]]
 then
   echo "Switch to the root of the repo and try again. Should be in $ROOT_FOLDER"
-  exit
+  exit 1
 fi
 
 cd $ROOT_FOLDER
@@ -17,7 +27,7 @@ INDEX=1
 for HASH in $HASHES
 do
   INDEX_OUT=$(printf %03d $INDEX)
-  OUT_FILENAME="$FILENAME.$INDEX_OUT.$HASH.$EXTENSION"
+  OUT_FILENAME=$(echo "$FILENAME.$INDEX_OUT.$HASH.$EXTENSION"|sed 's~/~_~g')
   echo "saving version $INDEX to file $OUT_FILENAME"
   git show $HASH:$FILENAME > $OUT_FILENAME
   let INDEX=INDEX+1
