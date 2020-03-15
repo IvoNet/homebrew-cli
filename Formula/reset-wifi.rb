@@ -13,11 +13,4 @@ class ResetWifi < Formula
     bin.install "bin/reset-wifi"
   end
 
-  def caveats; <<~EOS
-      This script needs docker to be installed.
-      If you do not have it installed please run:
-      `brew cask install docker`
-    EOS
-  end
-  
 end
