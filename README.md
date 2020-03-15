@@ -23,7 +23,7 @@ e.g. `brew install menv`
 
 ## Beers to tap
 
-| brew               | description                                              |
+| brewed beer        | description                                              |
 |:-------------------|:---------------------------------------------------------|
 | ivo2u              | cli for creating ivo2u tiny urls                         |
 | ivonet-docker      | some docker convenience scripts                          |
