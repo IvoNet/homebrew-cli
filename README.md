@@ -37,6 +37,7 @@ e.g. `brew install menv`
 | command            | description                                              |
 |:-------------------|:---------------------------------------------------------|
 | git_dump_all_versions_of_a_file | Dumps all the versions of a specific file to disk |
+| sshh               | ssh into server without having to save to known_hosts    |
 
 ## ivonet-docker
 

@@ -4,18 +4,20 @@ class IvonetCommon < Formula
   desc "IvoNet Common CLI tools."
   homepage "https://github.com/IvoNet/homebrew-ivonet/tree/master/bin"
   url "https://github.com/IvoNet/homebrew-cli/archive/v0.6.tar.gz"
-  version "0.1"
-  sha256 "ecdd66efaf8324534cabc8843cbd2f1fc7e90f9ad218323b1da128965cf28ecf"
+  version "0.2"
+  sha256 "ecdd66efaf8324534cabc8843cbd2f1fc7e90f9ad218323b1da128965cf28ecfπ"
 
   depends_on "git"
 
   def install
     bin.install "bin/git_dump_all_versions_of_a_file"
+    bin.install "bin/sshh"
   end
 
   def caveats; <<~EOS
       Installed:
       - git_dump_all_versions_of_a_file
+      - sshh
     EOS
   end
   
