@@ -5,7 +5,7 @@ class IvonetCommon < Formula
   homepage "https://github.com/IvoNet/homebrew-ivonet/tree/master/bin"
   url "https://github.com/IvoNet/homebrew-cli/archive/v0.7.tar.gz"
   version "0.2"
-  sha256 "ecdd66efaf8324534cabc8843cbd2f1fc7e90f9ad218323b1da128965cf28ecfπ"
+  sha256 "1e75966b73e853acb7604b4aa3eb49d6f1bf9d7d6ff08ef076f3fdae347d3bd7"
 
   depends_on "git"
 
