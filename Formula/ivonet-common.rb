@@ -12,9 +12,8 @@ class IvonetCommon < Formula
   end
 
   def caveats; <<~EOS
-      This script needs docker to be installed.
-      If you do not have it installed please run:
-      `brew cask install docker`
+      Installed:
+      - histg
     EOS
   end
   
