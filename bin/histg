@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [[ -z "$1" ]]; then
+if [ -z "$1" ]; then
     history
 else
     history |grep $*
