@@ -48,6 +48,11 @@ e.g. `brew install menv`
 | mkv2x264  | Convert x265 to x264 for older devices |
 | mkv-rm-tracks | remove unwanted tracks from an mkv envelope |
 
+# Uninstall the tap
+
+```bash
+brew untap ivonet/cli
+```
 
 # License
 
@@ -73,3 +78,4 @@ scripts too. Please use what you want but do be careful and you might want to lo
 
 By using them you are agreeing to the License.
 I will take no responsibility for possible errors and failures of any kind.
+

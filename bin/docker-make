@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## initialises the current folder with docker make stuff.
+## initialises the current folder with docker Makefile stuff.
 echo "Retrieving: Makefile"
 rm -f Makefile 2>/dev/null
 curl -s https://raw.githubusercontent.com/IvoNet/docker-make/master/Makefile -o Makefile

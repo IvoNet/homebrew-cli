@@ -3,9 +3,9 @@
 class Drawio < Formula
   desc "IvoNetCLI - IvoNet CLI tools."
   homepage "https://github.com/IvoNet/homebrew-ivonet/tree/master/bin"
-  url "https://github.com/IvoNet/homebrew-ivonet/archive/v0.1.tar.gz"
-  version "0.1"
-  sha256 "1cc518be70b76554e4f815e4d0f211c7f8f839becdf4217e0d8b2888b6f0b201"
+  url "https://github.com/IvoNet/homebrew-cli/archive/v0.2.tar.gz"
+  version "0.2"
+  sha256 "cf2668de6508aa87db95fa53a08eca78422c9899b719418e65e4bead55ded3fe"
 
   def install
     bin.install "bin/drawio"
