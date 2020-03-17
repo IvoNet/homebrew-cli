@@ -13,5 +13,21 @@ class Menv < Formula
     bin.install "bin/menv"
     libexec.install Dir["*"]
   end
-  
+
+  def caveats
+    <<~EOS
+##############################################################################
+# Uninstall information:
+##############################################################################
+  This script will replace the original 'mvn' command with its onw.
+  If you want to remove 'menv' just do the normal 'brew uninstall menv',
+  but also the following:
+
+     brew unlink maven && brew link maven
+
+  this will restore the original mvn commands.
+##############################################################################
+    EOS
+  end
+
 end
