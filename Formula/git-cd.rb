@@ -2,11 +2,11 @@
 #                https://rubydoc.brew.sh/Formula
 class GitCd < Formula
   desc "gcd - The git change directory tool"
-  homepage "https://www.ivonet.nl"
-  url "https://github.com/IvoNet/git-cd/archive/v0.9.tar.gz"
-  version "0.9"
+  homepage "https://github.com/IvoNet/git-cd"
+  url "https://github.com/IvoNet/git-cd/archive/v0.11.tar.gz"
+  version "0.11"
   head "https://github.com/IvoNet/git-cd.git"
-  sha256 "79e2bb4859bfcc151e975bc81bd7e9d17a559735d60c3f2236ba8a31111ac746"
+  sha256 "4e0104dafa4691507b2407b2ddadcce809298ae5d0cc6611f6c8773ce77de4b8"
 
   depends_on "python@3"
 
