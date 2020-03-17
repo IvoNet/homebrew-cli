@@ -12,7 +12,14 @@ class Gcd < Formula
 
   def install
     bin.install "bin/gcd"
+    libexec.install Dir["*"]
+  end
 
+  def caveats
+    <<~EOS
+        Add the following line to your .bashrc or equivalent:
+          alias gcd="#{bin}/gcd"
+    EOS
   end
 
   test do
