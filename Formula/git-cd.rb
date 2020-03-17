@@ -1,6 +1,6 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
-class Gcd < Formula
+class GitCd < Formula
   desc "gcd - The git change directory tool"
   homepage "https://www.ivonet.nl"
   url "https://github.com/IvoNet/git-cd/archive/v0.7.tar.gz"
