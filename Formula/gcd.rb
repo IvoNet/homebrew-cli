@@ -18,7 +18,7 @@ class Gcd < Formula
   def caveats
     <<~EOS
         Add the following line to your .bashrc or equivalent:
-          alias gcd="#{bin}/gcd"
+          alias gcd="#{opt_bin}/gcd"
     EOS
   end
 
