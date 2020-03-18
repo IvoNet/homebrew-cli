@@ -6,7 +6,7 @@ class GitCd < Formula
   url "https://github.com/IvoNet/git-cd/archive/v0.13.tar.gz"
   version "0.13"
   head "https://github.com/IvoNet/git-cd.git"
-  # sha256 "dcc64f1f987a6c635058a144657739d10839f5a6e8e8fb2b939fc9dc089aca60"
+  sha256 "cec3de83eab57712b58bbf71a94b0a43b6939fd6df9330bf9ea9067fba0e7dc3"
 
   depends_on "python@3"
 
