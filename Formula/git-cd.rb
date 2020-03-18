@@ -3,15 +3,16 @@
 class GitCd < Formula
   desc "gcd - The git change directory tool"
   homepage "https://github.com/IvoNet/git-cd"
-  url "https://github.com/IvoNet/git-cd/archive/v0.11.tar.gz"
-  version "0.11"
+  url "https://github.com/IvoNet/git-cd/archive/v0.12.tar.gz"
+  version "0.12"
   head "https://github.com/IvoNet/git-cd.git"
-  sha256 "4e0104dafa4691507b2407b2ddadcce809298ae5d0cc6611f6c8773ce77de4b8"
+  # sha256 "4e0104dafa4691507b2407b2ddadcce809298ae5d0cc6611f6c8773ce77de4b8"
 
   depends_on "python@3"
 
   def install
     inreplace "bin/gcd", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
+    inreplace "bin/gcdcron", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
     bin.install "bin/gcd"
     bin.install "bin/cdi"
     libexec.install Dir["*"]
@@ -20,27 +21,39 @@ class GitCd < Formula
   def caveats
     <<~EOS
 #############################################################################
+# git-cd (gcd) will scan and index all your git projects in your HOME 
+# folder and below for easy switching between them.
+#############################################################################
 #  NOTE!!                                                                    
 #############################################################################
 #  Add the following lines to your .zshrc / .bashrc or equivalent:           
 #############################################################################
-   alias gcd="source #{HOMEBREW_PREFIX}/bin/gcd"         
-   alias gcdrescan="rm -f \${HOME}/.gcd/gcd.cache 2>/dev/null && gcd"  
-   alias gcdreset="rm -f \${HOME}/.gcd/gcd.sqlite 2>/dev/null && gcd"
-   alias cdi="source #{HOMEBREW_PREFIX}/bin/cdi"  
+alias gcd="source #{HOMEBREW_PREFIX}/bin/gcd"         
+alias gcdrescan="rm -f \\${HOME}/.gcd/gcd.cache 2>/dev/null && gcd"  
+alias gcdreset="rm -f \\${HOME}/.gcd/gcd.sqlite 2>/dev/null && gcd"
+alias cdi="source #{HOMEBREW_PREFIX}/bin/cdi"  
 #############################################################################
 #  If you want to change the number of favorites to display                  
 #  add the following with a number (default 10):                             
 #############################################################################
-   export GCD_FAVORITES=20
+export GCD_FAVORITES=20
 #############################################################################
-#  If you want the projects to be automatically updated at an interval you
-#  can add a cron job:
+# Add the following too, If you want gcd to scan a different base folder:
+#############################################################################
+export GCD_PROJECTS_DIR=<your_directory_here>
+#############################################################################
+#  If you want the projects to be automatically opdate the projects at an 
+#  interval you can add a cron job:
 #  * edit crontab with `crontab -e`
-#  * add following line (or your own config)
+#  * add one of the following lines (or your own of course)
 #  * exit and save
 #############################################################################
-* */6 * * * #{opt_bin}/gcdcron    
+#  This example will update every 6 hours 
+0 */6 * * * #{opt_libexec}/bin/gcdcron  
+#  This one every morning at 8 am
+0 8 * * * #{opt_libexec}/bin/gcdcron  
+#  This one every day at 7 / 12 / 15 / 20 hours
+0 7,12,15,20 * * * #{opt_libexec}/bin/gcdcron  
 #############################################################################
 #    Known issues:                                                           
 #    - Paths with spaces in them will have the spaces in the menu replaced   
