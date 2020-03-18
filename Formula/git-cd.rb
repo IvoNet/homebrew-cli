@@ -19,25 +19,33 @@ class GitCd < Formula
 
   def caveats
     <<~EOS
-##############################################################################
-#  NOTE!!                                                                    #
-##############################################################################
-#  Add the following lines to your .zshrc / .bashrc or equivalent:           #
-##############################################################################
+#############################################################################
+#  NOTE!!                                                                    
+#############################################################################
+#  Add the following lines to your .zshrc / .bashrc or equivalent:           
+#############################################################################
    alias gcd="source #{HOMEBREW_PREFIX}/bin/gcd"         
    alias gcdrescan="rm -f \${HOME}/.gcd/gcd.cache 2>/dev/null && gcd"  
    alias gcdreset="rm -f \${HOME}/.gcd/gcd.sqlite 2>/dev/null && gcd"
    alias cdi="source #{HOMEBREW_PREFIX}/bin/cdi"  
-##############################################################################
-#  If you want to change the number of favorites to display                  #
-#  add the following with a number (default 10):                             #
-##############################################################################
+#############################################################################
+#  If you want to change the number of favorites to display                  
+#  add the following with a number (default 10):                             
+#############################################################################
    export GCD_FAVORITES=20
-##############################################################################
-#    Known issues:                                                           #
-#    - Paths with spaces in them will have the spaces in the menu replaced   #
-#      with the ? symbol to make them more readable                          #
-##############################################################################
+#############################################################################
+#  If you want the projects to be automatically updated at an interval you
+#  can add a cron job:
+#  * edit crontab with `crontab -e`
+#  * add following line (or your own config)
+#  * exit and save
+#############################################################################
+* */6 * * * #{opt_bin}/gcdcron    
+#############################################################################
+#    Known issues:                                                           
+#    - Paths with spaces in them will have the spaces in the menu replaced   
+#      with the ? symbol to make them more readable                          
+#############################################################################
     EOS
   end
 
