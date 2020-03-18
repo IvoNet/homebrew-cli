@@ -3,18 +3,22 @@
 class GitCd < Formula
   desc "gcd - The git change directory tool"
   homepage "https://github.com/IvoNet/git-cd"
-  url "https://github.com/IvoNet/git-cd/archive/v0.12.tar.gz"
-  version "0.12"
+  url "https://github.com/IvoNet/git-cd/archive/v0.13.tar.gz"
+  version "0.13"
   head "https://github.com/IvoNet/git-cd.git"
-  sha256 "dcc64f1f987a6c635058a144657739d10839f5a6e8e8fb2b939fc9dc089aca60"
+  # sha256 "dcc64f1f987a6c635058a144657739d10839f5a6e8e8fb2b939fc9dc089aca60"
 
   depends_on "python@3"
 
   def install
     inreplace "bin/gcd", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
     inreplace "bin/gcdcron", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
+    inreplace "bin/gcdrescan", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
+    inreplace "bin/gcdresetmetrics", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
     bin.install "bin/gcd"
     bin.install "bin/cdi"
+    bin.install "bin/gcdrescan"
+    bin.install "bin/gcdresetmetrics"
     libexec.install Dir["*"]
   end
 
@@ -26,12 +30,12 @@ class GitCd < Formula
 #############################################################################
 # NOTE!!                                                                    
 #############################################################################
-# Add the following lines to your .zshrc / .bashrc or equivalent:           
+# Add the following line to your .zshrc / .bashrc or equivalent:           
 #############################################################################
-alias gcd="source #{HOMEBREW_PREFIX}/bin/gcd"         
-alias gcdrescan="rm -f \\${HOME}/.gcd/gcd.cache 2>/dev/null && gcd"  
-alias gcdreset="rm -f \\${HOME}/.gcd/gcd.sqlite 2>/dev/null && gcd"
-alias cdi="source #{HOMEBREW_PREFIX}/bin/cdi"  
+alias gcd="source #{HOMEBREW_PREFIX}/bin/gcd"
+# if you develop with IntelliJ idea and you have the commandline tool
+# this will navigate to the folder and open intellij there :-)         
+alias cdi="source #{HOMEBREW_PREFIX}/bin/cdi" 
 #############################################################################
 # If you want to change the number of favorites to display                  
 # add the following with a number (default 10):                             
