@@ -46,7 +46,7 @@ export GCD_FAVORITES=20
 #############################################################################
 export GCD_PROJECTS_DIR=<your_directory_here>
 #############################################################################
-# If you want the projects to be automatically opdate the projects at an 
+# If you want the projects to be automatically update the projects at an 
 # interval you can add a cron job:
 # * edit crontab with `crontab -e`
 # * add one of the following lines (or your own of course)
