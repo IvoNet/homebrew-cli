@@ -61,7 +61,7 @@ alias ccd="source #{HOMEBREW_PREFIX}/bin/ccd"
 alias cdi="source #{HOMEBREW_PREFIX}/bin/cdi" 
 # ^^^ cdi - to execute a command by default in the folder you navigate to
 #     add `export GCD_EXEC="<your_command_here>"` to your .zshrc
-#     defaults to `idea .` (IntelliJ)         
+#     defaults to `ls -lsa`.         
 #############################################################################
 # Full guide `brew home git-cd` as there are many more options and commands
 # available in this package like: ccd, cdi, ccd-alias, gcd-rescan, etc...
