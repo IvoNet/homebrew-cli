@@ -28,8 +28,8 @@ e.g. `brew install menv`
 | ivo2u              | cli for creating ivo2u tiny urls                         |
 | ivonet-docker      | some docker convenience scripts                          |
 | ivonet-media       | some media manipulating commands (uses docker)           |
-| menv               | Maven Environment setter - developer tool                |
-| drawio             | DrawIO docker script                                     |
+| menv               | maven Environment setter - developer tool                |
+| drawio             | drawIO docker script                                     |
 | reset-wifi         | turns the Wi-Fi off and on again                         |
 
 ## ivonet-common
@@ -43,20 +43,20 @@ e.g. `brew install menv`
 
 | command            | description                                              |
 |:-------------------|:---------------------------------------------------------|
-| dig                | Docker images grep                                       |
-| docker-make        | Creates a Makefile in the current folder                 |
-| docker-project     | Generates a standard ivonet docker project               |
-| docker-ui-project  | Generates a standard ivonet docker ui project            |
+| dig                | docker images grep                                       |
+| docker-make        | creates a Makefile in the current folder                 |
+| docker-project     | generates a standard ivonet docker starter project       |
+| docker-ui-project  | generates a standard ivonet docker ui starter project    |
 
 ## ivonet-media
 
 | command            | description                                              |
 |:-------------------|:---------------------------------------------------------|
-| m4b                | Create Audiobook from mp3                                |
-| m4v                | Convert movies to m4v format                             |
-| mkvmerge           | Merge mkv files                                          |
-| mkvinfo            | Get Metadata information on a mkv file                   |
-| mkv2x264           | Convert x265 to x264 for older devices                   |
+| m4b                | create an audiobook from mp3                             |
+| m4v                | convert movies to m4v format                             |
+| mkvmerge           | merge mkv files                                          |
+| mkvinfo            | get Metadata information on a mkv file                   |
+| mkv2x264           | convert x265 to x264 for older devices                   |
 | mkv-rm-tracks      | remove unwanted tracks from an mkv envelope              |
 
 # Uninstall the tap
@@ -83,10 +83,11 @@ brew untap ivonet/cli
 
 # Disclaimer
 
-The scripts in this Tap room are mainly meant for myself and have been tested only on my machine.
+The scripts in this Tap room are mainly meant for myself and have been tested only on my MacBook Pro.
 Some scripts might only be interesting to me but sometimes people ask me if they can have my
 scripts too. Please use what you want but do be careful and you might want to look at the scripts first.
 
-By using them you are agreeing to the License.
-I will take no responsibility for possible errors and failures of any kind.
+I do my utmost to make the scripts as generic as possible, but sometimes I make mistakes :-)
+
+By using the scripts you are agreeing to the License.
 
