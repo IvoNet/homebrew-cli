@@ -3,10 +3,10 @@
 class GitCd < Formula
   desc "gcd - The git change directory tool"
   homepage "https://github.com/IvoNet/git-cd"
-  url "https://github.com/IvoNet/git-cd/archive/v0.15.tar.gz"
-  version "0.15"
+  url "https://github.com/IvoNet/git-cd/archive/v0.16.tar.gz"
+  version "0.16"
   head "https://github.com/IvoNet/git-cd.git"
-  sha256 "41e21342196c735ada2cbd9b86c1d92c8c94362925fe7730da54f4292506f6fd"
+  sha256 "98eb982ef2971180cb332f45fbbeda73396770e853f848ba39098fb6c86e9cd1"
 
   depends_on "python@3"
   depends_on "coreutils"
@@ -18,13 +18,16 @@ class GitCd < Formula
     inreplace "bin/ccd-help", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
     bin.install "bin/ccd-help"
 
+    inreplace "bin/ccd-alias", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
+    bin.install "bin/ccd-alias"
+
     inreplace "bin/gcd", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
     bin.install "bin/gcd"
 
+    inreplace "bin/gcd-add", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
+    bin.install "bin/gcd-add"
+
     bin.install "bin/cdi"
-    
-    inreplace "bin/gcd-alias", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
-    bin.install "bin/gcd-alias"
 
     inreplace "bin/gcd-rescan", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
     bin.install "bin/gcd-rescan"
