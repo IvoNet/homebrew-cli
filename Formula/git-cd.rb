@@ -3,10 +3,10 @@
 class GitCd < Formula
   desc "gcd - The git change directory tool"
   homepage "https://github.com/IvoNet/git-cd"
-  url "https://github.com/IvoNet/git-cd/archive/v0.20.tar.gz"
-  version "0.20"
+  url "https://github.com/IvoNet/git-cd/archive/v0.21.tar.gz"
+  version "0.21"
   head "https://github.com/IvoNet/git-cd.git"
-  sha256 "57fb4f9b0f55a47fb205d39088c708334291d639b275fc4fb788bf3bf4197576"
+  sha256 "56ac414bca6918b83427cbaf2fc6ad9aeba9fcfb06488a47b0cdde9b8041c796"
 
   depends_on "python@3"
   depends_on "coreutils"
@@ -64,7 +64,7 @@ alias cdi="source #{HOMEBREW_PREFIX}/bin/cdi"
 #     defaults to `idea .` (IntelliJ)         
 #############################################################################
 # Full guide `brew home git-cd` as there are many more options and commands
-# available in this package like: ccd, ccd-alias, gcd-rescan, etc...
+# available in this package like: ccd, cdi, ccd-alias, gcd-rescan, etc...
 #############################################################################
 # Known issues:                                                           
 # - Paths with spaces in them will have the spaces in the menu replaced   
