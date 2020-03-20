@@ -3,10 +3,10 @@
 class GitCd < Formula
   desc "gcd - The git change directory tool"
   homepage "https://github.com/IvoNet/git-cd"
-  url "https://github.com/IvoNet/git-cd/archive/v0.18.tar.gz"
-  version "0.18"
+  url "https://github.com/IvoNet/git-cd/archive/v0.19.tar.gz"
+  version "0.19"
   head "https://github.com/IvoNet/git-cd.git"
-  sha256 "c0885aa292a7320fb39daef6e6c733f407e25cad892d7760ee77897eab9123e6"
+  sha256 "dadd37c78908720a47df8b9f90def19dff8ec4d66f20ba804f30452ef985906d"
 
   depends_on "python@3"
   depends_on "coreutils"
@@ -58,33 +58,13 @@ class GitCd < Formula
 #############################################################################
 alias gcd="source #{HOMEBREW_PREFIX}/bin/gcd"
 alias ccd="source #{HOMEBREW_PREFIX}/bin/ccd"
-# if you develop with IntelliJ idea and you have the commandline tool
-# this will navigate to the folder and open intellij there :-)         
 alias cdi="source #{HOMEBREW_PREFIX}/bin/cdi" 
+# ^^^ cdi - to open an IDE in the folder you navigate to (optional)
+#     add `export GCD_EXEC=<path_to_your_editor_here>` to your .zshrc
+#     defaults to `idea` (IntelliJ)         
 #############################################################################
-# If you want to change the number of favorites to display                  
-# add the following with a number (default 10):                             
-#############################################################################
-export GCD_FAVORITES=20
-#############################################################################
-# Add the following too, If you want gcd to scan a different base folder:
-#############################################################################
-export GCD_PROJECTS_DIR=<your_directory_here>
-#############################################################################
-# If you want the projects to be automatically update the projects at an 
-# interval you can add a cron job:
-# * edit crontab with `crontab -e`
-# * add one of the following lines (or your own of course)
-# * exit and save
-#############################################################################
-#  This example will update every 6 hours 
-0 */6 * * * #{opt_libexec}/bin/gcdcron  
-#  This one every morning at 8 am
-0 8 * * * #{opt_libexec}/bin/gcdcron  
-#  This one every day at 7 / 12 / 15 / 20 hours
-0 7,12,15,20 * * * #{opt_libexec}/bin/gcdcron  
-#############################################################################
-# Full guide `brew home git-cd`
+# Full guide `brew home git-cd` as there are many more options and commands
+# available in this package like: ccd, ccd-alias, gcd-rescan, etc...
 #############################################################################
 # Known issues:                                                           
 # - Paths with spaces in them will have the spaces in the menu replaced   
