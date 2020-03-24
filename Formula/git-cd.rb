@@ -3,10 +3,10 @@
 class GitCd < Formula
   desc "gcd - The git change directory tool"
   homepage "https://github.com/IvoNet/git-cd"
-  url "https://github.com/IvoNet/git-cd/archive/v0.22.tar.gz"
-  version "0.22"
+  url "https://github.com/IvoNet/git-cd/archive/v0.23.tar.gz"
+  version "0.23"
   head "https://github.com/IvoNet/git-cd.git"
-  sha256 "1417c653d8f3c449a65c9db90b3e91aa4d3f72b3f4bece04083e1c5fd3195b8b"
+  sha256 "98d451809621308517ea285a2fb4d94b8b1a144b7a854fb3dc674652976e83a5"
 
   depends_on "python@3"
   depends_on "coreutils"
@@ -31,6 +31,7 @@ class GitCd < Formula
     bin.install "bin/gcd-add"
 
     bin.install "bin/cdi"
+    bin.install "bin/cdc"
 
     inreplace "bin/gcd-rescan", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
     bin.install "bin/gcd-rescan"
@@ -58,8 +59,9 @@ class GitCd < Formula
 #############################################################################
 alias gcd="source #{HOMEBREW_PREFIX}/bin/gcd"
 alias ccd="source #{HOMEBREW_PREFIX}/bin/ccd"
+alias cdc="source #{HOMEBREW_PREFIX}/bin/cdc" 
 alias cdi="source #{HOMEBREW_PREFIX}/bin/cdi" 
-# ^^^ cdi - to execute a command by default in the folder you navigate to
+# ^^^ cdi/cdc - to execute a command by default in the folder you navigate to
 #     add `export GCD_EXEC="<your_command_here>"` to your .zshrc
 #     defaults to `ls -lsa`.         
 #############################################################################
