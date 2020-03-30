@@ -1,9 +1,10 @@
 #!/bin/sh
-if [[ -z "$1" ]]; then
+if [[ -z "$1" ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
 cat <<'EOT'
 ivo2u - Copyright (c) 2020 by Ivo Woltring
 The ivo2u Tyny url creator service for ivo2u.nl
 Syntax: ivo2u <URL>
 EOT
+exit 0
 fi
 curl -s -X POST -L -H "Content-Type: text/plain" --data "$*" https://ivo2u.nl/api/
