@@ -99,7 +99,7 @@ See `build.sh` for build instructions
 ---
 # License
 
-    Copyright 2019 (c) Ivo Woltring
+    Copyright 2020 (c) Ivo Woltring
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -188,41 +188,23 @@ docker run                                   \
 killpulse
 EOT
 
-cat <<'EOT' > ${PROJECT_NAME}/build.sh
-#!/usr/bin/env bash
-docker_name=ivonet
-image=PROJECT_NAAM
-version=0.1
-
-deploy="false"
-#deploy="true"
-versioning=false
-#versioning=true
-
-#OPTIONS="$OPTIONS --no-cache"
-#OPTIONS="$OPTIONS --force-rm"
-OPTIONS="$OPTIONS --build-arg APP=PROJECT_NAAM --build-arg USR=ivonet --build-arg PWD=secret"
-
-docker build ${OPTIONS} -t $docker_name/${image}:latest .
-if [ "$?" -eq 0 ] && [ ${deploy} == "true" ]; then
-    docker push $docker_name/${image}:latest
-else
-    exit 1
-fi
-
-if [ "$versioning" == "true" ]; then
-    docker tag $docker_name/${image}:latest $docker_name/${image}:${version}
-    if [ "$?" -eq 0 ] && [ ${deploy} == "true" ]; then
-        docker push $docker_name/${image}:${version}
-    fi
-fi
+cat <<'EOT' > ${PROJECT_NAME}/VERSION
+latest
 EOT
+
+cat <<'EOT' > ${PROJECT_NAME}/pre-make.sh
+#!/usr/bin/env bash
+# Put your pre-make commands here...
+EOT
+
 
 sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/Dockerfile
 sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/README.md
 sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/build.sh
+sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/pre-make.sh
 sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/${PROJECT}.sh
 sed -i "" "s~PROJECT_NAAM~${PROJECT}~g" ${PROJECT_NAME}/run.sh
+chmod +x ${PROJECT_NAME}/pre-make.sh
 chmod +x ${PROJECT_NAME}/build.sh
 chmod +x ${PROJECT_NAME}/${PROJECT}.sh
 chmod +x ${PROJECT_NAME}/run.sh
