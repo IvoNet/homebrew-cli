@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 IFS=$(echo -en "\n\b")
-runit \
+docker run \
    --cpuset-cpus="1-2" \
    --rm \
    -v "$(pwd):/input:ro" \
