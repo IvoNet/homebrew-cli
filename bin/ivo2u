@@ -1,2 +1,9 @@
 #!/bin/sh
+if [[ -z "$1" ]]; then
+cat <<'EOT'
+ivo2u - Copyright (c) 2020 by Ivo Woltring
+The ivo2u Tyny url creator service for ivo2u.nl
+Syntax: ivo2u <URL>
+EOT
+fi
 curl -s -X POST -L -H "Content-Type: text/plain" --data "$*" https://ivo2u.nl/api/
