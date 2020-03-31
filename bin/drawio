@@ -18,7 +18,7 @@
 RUNNING=$(docker inspect --format="{{ .State.Running }}" draw.io 2> /dev/null)
 
 if [ $? -eq 1 ] || [ "$RUNNING" == "false" ]; then
-  docker run -d --rm --name draw.io -p 4000:80 -p 4443:443 ivonet/draw.io
+  docker run -d --rm --name draw.io -p 4000:8080 -p 4443:8443 ivonet/draw.io
   /usr/bin/osascript -e 'display notification "Starting draw.io..." with title "Draw.io" '
   open http://localhost:4000?offline=1
 else
