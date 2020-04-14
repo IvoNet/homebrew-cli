@@ -5,7 +5,7 @@ class IvonetMedia < Formula
   homepage "https://github.com/IvoNet/homebrew-ivonet/"
   url "https://github.com/IvoNet/homebrew-cli/archive/v0.14.tar.gz"
   version "0.14"
-  # sha256 "ca6248c1819d82fa6ee043adb89f379f865e2bf2ebe140af0f1d96d36278d727"
+  sha256 "e5b0210180644f117ee805aae509cd2772bab61811e930cda9f27ec038a623ea"
 
   def install
     bin.install "bin/m4b"
