@@ -3,9 +3,9 @@
 class IvonetMedia < Formula
   desc "IvoNetMedia - IvoNet Media CLI tools."
   homepage "https://github.com/IvoNet/homebrew-ivonet/"
-  url "https://github.com/IvoNet/homebrew-cli/archive/v0.11.tar.gz"
-  version "0.11"
-  sha256 "9f5c59571c71bdbe0eaf0bae357dca387de95b1db78dbf8600810e911c37f47a"
+  url "https://github.com/IvoNet/homebrew-cli/archive/v0.13.tar.gz"
+  version "0.13"
+  sha256 "ca6248c1819d82fa6ee043adb89f379f865e2bf2ebe140af0f1d96d36278d727"
 
   def install
     bin.install "bin/m4b"
