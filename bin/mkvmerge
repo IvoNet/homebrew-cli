@@ -6,7 +6,7 @@ if [ -z "$1" ]; then
     echo
     mkvmerge --help
 fi
-runit \
+docker run -it \
    -v "$(pwd):/input:ro" \
    -v "$(pwd):/output:rw" \
    --entrypoint "mkvmerge" \

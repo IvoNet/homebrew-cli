@@ -10,7 +10,7 @@ mkv="$(basename $1)"
 map="$(dirname $1)"
 enc="${mkv%.*}.new.mkv"
 enc="$(basename $enc)"
-runit \
+docker run -it \
    --cpuset-cpus="1-2" \
    -v "$(pwd)/${map}:/input:ro" \
    -v "$(pwd)/${map}:/output:rw" \
