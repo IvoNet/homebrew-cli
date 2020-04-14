@@ -3,9 +3,9 @@
 class Ivo2u < Formula
   desc "ivo2u - The Ivo2U tiny url service"
   homepage "http://ivo2u.nl"
-  url "https://github.com/IvoNet/homebrew-cli/archive/v0.10.tar.gz"
-  version "0.10"
-  sha256 "e2b2028664f2409c9e46b20d9a83e37c53f25e3ecd5f12d3a0c0b73589f90c3a"
+  url "https://github.com/IvoNet/homebrew-cli/archive/v0.15.tar.gz"
+  version "0.15"
+  sha256 "fe1b12e489f6d78952ad3449c914431c091c2f85708fce6439b3728884027c86"
 
   depends_on "curl"
 
