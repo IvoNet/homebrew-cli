@@ -13,6 +13,5 @@ docker run -it \
    -v "$(pwd)/$map:/input:ro" \
    --entrypoint "mkvinfo" \
    ivonet/mediatools:latest \
-   "/input/$mkv" \
-   "$@"
+   "/input/$mkv" $2 $3 $4 $5
 IFS=$SAVEIFS

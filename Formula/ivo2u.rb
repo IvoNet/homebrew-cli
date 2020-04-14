@@ -7,6 +7,7 @@ class Ivo2u < Formula
   version "0.10"
   sha256 "e2b2028664f2409c9e46b20d9a83e37c53f25e3ecd5f12d3a0c0b73589f90c3a"
 
+  depends_on "curl"
 
   def install
     bin.install "bin/ivo2u"
