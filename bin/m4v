@@ -6,7 +6,6 @@ m4v="${mkv%.*}.m4v"
 m4v="$(basename $m4v)"
 docker run \
     --rm \
-    --cpuset-cpus="1-2" \
     -v "$(pwd)/${map}:/input:ro" \
     -v "$(pwd)/${map}:/output:rw" \
     --entrypoint="HandBrakeCLI" \

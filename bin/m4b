@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 IFS=$(echo -en "\n\b")
 docker run -it \
-   --cpuset-cpus="1-2" \
    --rm \
    -v "$(pwd):/input:ro" \
    -v "$(pwd):/output:rw" \
