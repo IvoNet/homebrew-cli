@@ -3,9 +3,9 @@
 class IvonetMedia < Formula
   desc "IvoNetMedia - IvoNet Media CLI tools."
   homepage "https://github.com/IvoNet/homebrew-ivonet/"
-  url "https://github.com/IvoNet/homebrew-cli/archive/v0.16.tar.gz"
-  version "0.16"
-  sha256 "a42377b5157d0fa5152be9fb8646daeca106a6ecac94c3dc90e549658b50d186"
+  url "https://github.com/IvoNet/homebrew-cli/archive/v0.17.tar.gz"
+  version "0.17"
+  # sha256 "a42377b5157d0fa5152be9fb8646daeca106a6ecac94c3dc90e549658b50d186"
 
   def install
     bin.install "bin/m4b"
@@ -15,6 +15,7 @@ class IvonetMedia < Formula
     bin.install "bin/mkvinfo-help"
     bin.install "bin/mkv2x264"
     bin.install "bin/mkv-rm-tracks"
+    bin.install "bin/aif2mp3"
   end
   
   def caveats; <<~EOS

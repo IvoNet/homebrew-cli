@@ -17,7 +17,7 @@ Add the tap room to your taps
 brew tap ivonet/cli
 ```
 
-After that just use the normal install commands
+After that just use the normal `install` commands
 e.g. `brew install menv`
 
 
@@ -58,6 +58,7 @@ e.g. `brew install menv`
 | mkvinfo            | get Metadata information on a mkv file                   |
 | mkv2x264           | convert x265 to x264 for older devices                   |
 | mkv-rm-tracks      | remove unwanted tracks from an mkv envelope              |
+| aif2mp3            | convert aif files to mp3                                 |
 
 # Uninstall the tap
 
