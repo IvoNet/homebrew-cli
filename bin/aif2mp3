@@ -1,10 +1,9 @@
 #!/bin/sh
-set -x
 ##############################################################################
 # Be careful editing anything below this line
 ##############################################################################
 if [ -z "$1" ]; then
-    echo "Please provide an aiff file as parameter and the track to keep"
+    echo "Please provide an aiff file to convert to mp3"
     echo "Syntax: $0 <aiff>"
     exit 1
 fi

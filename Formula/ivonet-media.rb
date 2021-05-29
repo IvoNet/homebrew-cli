@@ -3,8 +3,8 @@
 class IvonetMedia < Formula
   desc "IvoNetMedia - IvoNet Media CLI tools."
   homepage "https://github.com/IvoNet/homebrew-ivonet/"
-  url "https://github.com/IvoNet/homebrew-cli/archive/v0.17.tar.gz"
-  version "0.17"
+  url "https://github.com/IvoNet/homebrew-cli/archive/v0.18.tar.gz"
+  version "0.18"
   sha256 "dbccd104b54c2150e8e0f3f82cfb04c78dae15b11b6932af9bd0b7fb36d1b9f3"
 
   def install
