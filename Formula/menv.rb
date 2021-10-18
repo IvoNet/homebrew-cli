@@ -5,7 +5,7 @@ class Menv < Formula
   homepage "https://github.com/IvoNet/menv"
   url "https://github.com/IvoNet/menv/archive/v1.1.tar.gz"
   version "1.1"
-  sha256 "25584961def504a9fe4c016412e9860d48f306cc2cfd4733de8187d85f1af948"
+  sha256 "c71937ba3ef40ec00f756431dc5ad3bf84ba0d56158dca9cb8856d5d025bd37b"
 
   depends_on "maven"
 
