@@ -17,6 +17,14 @@ class Menv < Formula
   def caveats
     <<~EOS
 ##############################################################################
+# First usage instruction:
+##############################################################################
+  run the following command:
+
+     menv install
+  
+  Now you can use the menv mvn.
+##############################################################################
 # Uninstall information:
 ##############################################################################
   This script will replace the original 'mvn' command with its own.
