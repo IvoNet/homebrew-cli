@@ -3,9 +3,9 @@
 class Menv < Formula
   desc "menv - The environment changer for maven"
   homepage "https://github.com/IvoNet/menv"
-  version "2.4.1"
+  version "2.5"
   url "https://github.com/IvoNet/menv/archive/v#{version}.tar.gz"
-  sha256 "8437545e0b230ac0ebe470cd374078f9a055d1bc0ce83434bf8a5581971901fb"
+  sha256 "6f95dee1b0c0e4fffadf3386c8d22984ac7cc7ab73c5d4bd09ecaf4807165274"
 
   depends_on "maven"
 
@@ -24,8 +24,6 @@ class Menv < Formula
 ##############################################################################
   run the following command:
 
-     brew link --overwrite menv
-  or
      menv install
   
   Now you can use the menv mvn.
