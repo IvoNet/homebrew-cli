@@ -3,9 +3,9 @@
 class Menv < Formula
   desc "menv - The environment changer for maven"
   homepage "https://github.com/IvoNet/menv"
-  version "3.0"
+  version "3.0.1"
   url "https://github.com/IvoNet/menv/archive/v#{version}.tar.gz"
-  sha256 "f969440aeea7ec4b9eab07c8f83bd53875c57790d7ebe30b31294a4f6eb35b88"
+  sha256 "e742ea9dc1ce5f0a83522d36c0431e7ca6bec91ea0df681f8eb9500cc44ea28e"
 
   depends_on "maven"
 
