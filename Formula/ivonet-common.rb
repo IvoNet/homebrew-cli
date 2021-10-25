@@ -3,8 +3,8 @@
 class IvonetCommon < Formula
   desc "IvoNet Common CLI tools."
   homepage "https://github.com/IvoNet/homebrew-ivonet/tree/master/bin"
-  url "https://github.com/IvoNet/homebrew-cli/archive/v0.7.tar.gz"
-  version "0.2"
+  version "0.7"
+  url "https://github.com/IvoNet/homebrew-cli/archive/v#{version}.tar.gz"
   sha256 "1e75966b73e853acb7604b4aa3eb49d6f1bf9d7d6ff08ef076f3fdae347d3bd7"
 
   depends_on "git"

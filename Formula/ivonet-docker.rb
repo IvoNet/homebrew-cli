@@ -3,8 +3,8 @@
 class IvonetDocker < Formula
   desc "IvoNetDocker - IvoNet Docker CLI tools"
   homepage "https://github.com/IvoNet/homebrew-ivonet/"
-  url "https://github.com/IvoNet/homebrew-ivonet/archive/v0.8.tar.gz"
   version "0.8"
+  url "https://github.com/IvoNet/homebrew-ivonet/archive/v#{version}.tar.gz"
   sha256 "eac8bb6cbb6dfc845320b7f3315ed078d24fe9680f75c143e20877e85068e33e"
 
 
