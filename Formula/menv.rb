@@ -3,9 +3,9 @@
 class Menv < Formula
   desc "menv - The environment changer for maven"
   homepage "https://github.com/IvoNet/menv"
-  version "2.6"
+  version "3.0"
   url "https://github.com/IvoNet/menv/archive/v#{version}.tar.gz"
-  sha256 "5ade379c6a3b4e3c8012c36230f74c3c10e0bd219075fab184e51701bffd69f2"
+  sha256 "f969440aeea7ec4b9eab07c8f83bd53875c57790d7ebe30b31294a4f6eb35b88"
 
   depends_on "maven"
 
@@ -24,9 +24,10 @@ class Menv < Formula
 ##############################################################################
   run the following command:
 
-     menv install
+     menv init
   
   Now you can use the menv mvn.
+  Note that if you upgrade maven you may have to rerun the init again.
 ##############################################################################
 # Uninstall information:
 ##############################################################################
