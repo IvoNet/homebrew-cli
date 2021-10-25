@@ -24,6 +24,8 @@ class Menv < Formula
 ##############################################################################
   run the following command:
 
+     brew link --overwrite menv
+  or
      menv install
   
   Now you can use the menv mvn.
