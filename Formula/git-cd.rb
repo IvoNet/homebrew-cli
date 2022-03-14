@@ -30,8 +30,9 @@ class GitCd < Formula
     inreplace "bin/gcd-add", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
     bin.install "bin/gcd-add"
 
-
+    inreplace "bin/cdi", "!!GCDLIBEXECBIN!!", "#{opt_libexec}/bin"
     bin.install "bin/cdi"
+    
     bin.install "bin/cdc"
     bin.install "bin/gcd-logs"
     bin.install "bin/gcd-status"
