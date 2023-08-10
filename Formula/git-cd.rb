@@ -3,10 +3,10 @@
 class GitCd < Formula
   desc "gcd - The git change directory tool"
   homepage "https://github.com/IvoNet/git-cd"
-  version "1.9.1"
+  version "1.10.0"
   url "https://github.com/IvoNet/git-cd/archive/v#{version}.tar.gz"
   head "https://github.com/IvoNet/git-cd.git"
-  sha256 "393554f86526c0bdad6b0c77037e31db39da7d5b75f9692adc67d077a7ea165a"
+  sha256 "6921e84e5e283bccda0b98d0c0bfd84af308bd9e3e6bda1d97835065dbf5ab99"
 
   depends_on "python@3"
   depends_on "coreutils"
